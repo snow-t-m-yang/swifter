@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DocView: View {
-    @Environment(ModelData.self) var modelData
-    @State private var isSafariShown = false
+    @Environment(ModelData.self) var modelData: ModelData
     @State private var selectedDoc: Doc?
 
     var body: some View {
+        @Bindable var modelData = modelData
         NavigationStack {
             List {
                 ForEach(modelData.docs) { doc in
@@ -23,10 +23,11 @@ struct DocView: View {
                             .padding(4)
                         Spacer()
                         Button(action: {
-                            isSafariShown = true
+                            modelData.isDocWebViewOpened = true
+                            modelData.isDocWebViewOpened = true
                             selectedDoc = doc
                         }) {
-                            Image(systemName: "arrow.right.circle.fill")
+                            Image(systemName: "chevron.right")
                                 .foregroundColor(.accentColor)
                                 .font(.title2)
                         }
@@ -35,7 +36,7 @@ struct DocView: View {
             }
             .navigationTitle("Doc")
             .listStyle(.insetGrouped)
-            .navigationDestination(isPresented: $isSafariShown) {
+            .navigationDestination(isPresented: $modelData.isDocWebViewOpened) {
                 if let doc = selectedDoc {
                     ZStack {
                         WebView(url: URL(string: doc.urlString) ?? URL(string: "https://www.apple.com")!)
@@ -45,12 +46,15 @@ struct DocView: View {
             }
         }
         .toolbar {
-            if isSafariShown {
+            if modelData.isDocWebViewOpened {
                 ToolbarItem(placement: .bottomBar) {
-                    Button {
-                        isSafariShown = false
-                    } label: {
-                        Text("back")
+                    HStack {
+                        Button {
+                            modelData.isDocWebViewOpened = false
+                        } label: {
+                            Image(systemName: "arrow.uturn.backward")
+                        }
+                        Spacer()
                     }
                 }
             }

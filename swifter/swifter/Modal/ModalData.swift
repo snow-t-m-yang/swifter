@@ -10,6 +10,7 @@ import Foundation
 @Observable
 class ModelData {
     var docs: [Doc] = load("docData.json")
+    var isDocWebViewOpened = false
 }
 
 func load<T: Decodable>(_ filename: String) -> T {
