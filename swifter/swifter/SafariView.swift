@@ -12,7 +12,7 @@ struct SafariView: UIViewControllerRepresentable {
     let url: URL
 
     func makeUIViewController(context _: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
-        var Safari = SFSafariViewController(url: url)
+        let Safari = SFSafariViewController(url: url)
         Safari.dismissButtonStyle = .close
         Safari.preferredControlTintColor = UIColor(.accent)
         return Safari

@@ -9,28 +9,51 @@ import SwiftUI
 
 struct DocView: View {
     @Environment(ModelData.self) var modelData
+    @State private var isSafariShown = false
+    @State private var selectedDoc: Doc?
 
     var body: some View {
         NavigationStack {
             List {
                 ForEach(modelData.docs) { doc in
-                    NavigationLink {
-                        VStack {
-                            SafariView(url: URL(string: doc.urlString) ?? URL(string: "www.apple.com")!)
-                                .ignoresSafeArea(.all)
-                                .navigationBarBackButtonHidden(true)
-
-                            Spacer()
-                        }
-
-                    } label: {
+                    HStack {
                         Text(doc.name)
                             .font(.title)
+                            .foregroundStyle(.white)
                             .padding(4)
+                        Spacer()
+                        Button(action: {
+                            isSafariShown = true
+                            selectedDoc = doc
+                        }) {
+                            Image(systemName: "arrow.right.circle.fill")
+                                .foregroundColor(.accentColor)
+                                .font(.title2)
+                        }
                     }
                 }
             }
+            .navigationTitle("Doc")
             .listStyle(.insetGrouped)
+            .navigationDestination(isPresented: $isSafariShown) {
+                if let doc = selectedDoc {
+                    ZStack {
+                        WebView(url: URL(string: doc.urlString) ?? URL(string: "https://www.apple.com")!)
+                            .navigationBarBackButtonHidden(true)
+                    }
+                }
+            }
+        }
+        .toolbar {
+            if isSafariShown {
+                ToolbarItem(placement: .bottomBar) {
+                    Button {
+                        isSafariShown = false
+                    } label: {
+                        Text("back")
+                    }
+                }
+            }
         }
     }
 }
