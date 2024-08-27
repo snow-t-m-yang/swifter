@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SavedView: View {
     var body: some View {
+        // TODO
+        // You can save article link and organize it
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
