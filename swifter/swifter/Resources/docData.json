@@ -1,0 +1,14 @@
+[
+  {
+    "id": "BRMK",
+    "name": "Swift",
+    "category": "Language",
+    "urlString": "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/aboutswift"
+  },
+  {
+    "id": "2PXT",
+    "name": "SwiftUI",
+    "category": "Framework",
+    "urlString": "https://developer.apple.com/documentation/SwiftUI"
+  }
+]
