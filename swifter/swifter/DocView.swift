@@ -10,7 +10,7 @@ import SwiftUI
 struct DocView: View {
     @Environment(ModelData.self) var modelData: ModelData
     @State private var selectedDoc: Doc?
-
+    
     var body: some View {
         @Bindable var modelData = modelData
         NavigationStack {
@@ -23,8 +23,7 @@ struct DocView: View {
                             .padding(4)
                         Spacer()
                         Button(action: {
-                            modelData.isDocWebViewOpened = true
-                            modelData.isDocWebViewOpened = true
+                            modelData.isDocWebViewOpened.toggle()
                             selectedDoc = doc
                         }) {
                             Image(systemName: "chevron.right")
@@ -38,10 +37,9 @@ struct DocView: View {
             .listStyle(.insetGrouped)
             .navigationDestination(isPresented: $modelData.isDocWebViewOpened) {
                 if let doc = selectedDoc {
-                    ZStack {
-                        WebView(url: URL(string: doc.urlString) ?? URL(string: "https://www.apple.com")!)
-                            .navigationBarBackButtonHidden(true)
-                    }
+                    WebView(url: URL(string: doc.urlString)
+                        ?? URL(string: "https://www.apple.com")!)
+                        .navigationBarBackButtonHidden(true)
                 }
             }
         }
@@ -50,7 +48,7 @@ struct DocView: View {
                 ToolbarItem(placement: .bottomBar) {
                     HStack {
                         Button {
-                            modelData.isDocWebViewOpened = false
+                            modelData.isDocWebViewOpened.toggle()
                         } label: {
                             Image(systemName: "arrow.uturn.backward")
                         }
