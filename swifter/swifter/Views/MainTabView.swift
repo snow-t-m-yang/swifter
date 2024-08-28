@@ -14,7 +14,7 @@ struct MainTabView: View {
         TabView {
             DocView()
                 .tabItem {
-                    Label("Document", systemImage: "book.pages")
+                    Label("Doc", systemImage: "book.pages")
                 }
 
             ExploreView()
