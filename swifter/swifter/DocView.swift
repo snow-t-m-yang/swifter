@@ -10,7 +10,8 @@ import SwiftUI
 struct DocView: View {
     @Environment(ModelData.self) var modelData: ModelData
     @State private var selectedDoc: Doc?
-    
+    @State private var isWebViewLoading = false
+
     var body: some View {
         @Bindable var modelData = modelData
         NavigationStack {
@@ -37,9 +38,20 @@ struct DocView: View {
             .listStyle(.insetGrouped)
             .navigationDestination(isPresented: $modelData.isDocWebViewOpened) {
                 if let doc = selectedDoc {
-                    WebView(url: URL(string: doc.urlString)
-                        ?? URL(string: "https://www.apple.com")!)
-                        .navigationBarBackButtonHidden(true)
+                    ZStack {
+                        WebView(
+                            url: URL(string: doc.urlString) ?? URL(string: "https://www.apple.com")!,
+                            isWebViewLoading: $isWebViewLoading
+                        )
+
+                        if isWebViewLoading {
+                            ProgressView()
+                                .progressViewStyle(.circular)
+                                .tint(.accentColor)
+                                .scaleEffect(1.5)
+                        }
+                    }
+                    .navigationBarBackButtonHidden(true)
                 }
             }
         }
