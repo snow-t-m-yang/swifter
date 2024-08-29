@@ -11,6 +11,7 @@ import WebKit
 struct WebView: UIViewRepresentable {
     let url: URL
     @Binding var isWebViewLoading: Bool
+    @Binding var currentURL: URL?
 
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
@@ -34,15 +35,16 @@ struct WebView: UIViewRepresentable {
         }
 
         func webView(_: WKWebView, didStartProvisionalNavigation _: WKNavigation!) {
-            parent.isWebViewLoading = true // Set isWebViewLoading to true when loading starts
+            parent.isWebViewLoading = true
         }
 
-        func webView(_: WKWebView, didFinish _: WKNavigation!) {
-            parent.isWebViewLoading = false // Set isWebViewLoading to false when loading finishes
+        func webView(_ webView: WKWebView, didFinish _: WKNavigation!) {
+            parent.isWebViewLoading = false
+            parent.currentURL = webView.url
         }
 
         func webView(_: WKWebView, didFail _: WKNavigation!, withError _: Error) {
-            parent.isWebViewLoading = false // Set isLoading to false if loading fails
+            parent.isWebViewLoading = false
         }
     }
 }

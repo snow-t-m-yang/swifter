@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		647E71302C7F476B002C95CF /* Saved.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647E712F2C7F476B002C95CF /* Saved.swift */; };
 		64E9ECEF2C7DA39700B7C473 /* swifterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ECEE2C7DA39700B7C473 /* swifterApp.swift */; };
 		64E9ECF12C7DA39700B7C473 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ECF02C7DA39700B7C473 /* ContentView.swift */; };
 		64E9ECF32C7DA39800B7C473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64E9ECF22C7DA39800B7C473 /* Assets.xcassets */; };
@@ -18,7 +19,7 @@
 		64E9ED1B2C7DA58000B7C473 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED1A2C7DA58000B7C473 /* ExploreView.swift */; };
 		64E9ED1D2C7DA64800B7C473 /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED1C2C7DA64800B7C473 /* SavedView.swift */; };
 		64E9ED1F2C7DAB5E00B7C473 /* DocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED1E2C7DAB5E00B7C473 /* DocView.swift */; };
-		64E9ED222C7DB9D400B7C473 /* ModalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED212C7DB9D400B7C473 /* ModalData.swift */; };
+		64E9ED222C7DB9D400B7C473 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED212C7DB9D400B7C473 /* ModelData.swift */; };
 		64E9ED242C7DBB2F00B7C473 /* docData.json in Resources */ = {isa = PBXBuildFile; fileRef = 64E9ED232C7DBB2F00B7C473 /* docData.json */; };
 		64E9ED272C7DBC1400B7C473 /* Doc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED262C7DBC1400B7C473 /* Doc.swift */; };
 		64E9ED292C7DCE2F00B7C473 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED282C7DCE2F00B7C473 /* SafariView.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		647E712F2C7F476B002C95CF /* Saved.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saved.swift; sourceTree = "<group>"; };
 		64E9ECEB2C7DA39700B7C473 /* swifter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = swifter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64E9ECEE2C7DA39700B7C473 /* swifterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swifterApp.swift; sourceTree = "<group>"; };
 		64E9ECF02C7DA39700B7C473 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,7 +59,7 @@
 		64E9ED1A2C7DA58000B7C473 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		64E9ED1C2C7DA64800B7C473 /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		64E9ED1E2C7DAB5E00B7C473 /* DocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocView.swift; sourceTree = "<group>"; };
-		64E9ED212C7DB9D400B7C473 /* ModalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalData.swift; sourceTree = "<group>"; };
+		64E9ED212C7DB9D400B7C473 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		64E9ED232C7DBB2F00B7C473 /* docData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = docData.json; sourceTree = "<group>"; };
 		64E9ED262C7DBC1400B7C473 /* Doc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doc.swift; sourceTree = "<group>"; };
 		64E9ED282C7DCE2F00B7C473 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
@@ -180,8 +182,9 @@
 		64E9ED252C7DBBF900B7C473 /* Modals */ = {
 			isa = PBXGroup;
 			children = (
-				64E9ED212C7DB9D400B7C473 /* ModalData.swift */,
+				64E9ED212C7DB9D400B7C473 /* ModelData.swift */,
 				64E9ED262C7DBC1400B7C473 /* Doc.swift */,
+				647E712F2C7F476B002C95CF /* Saved.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -323,9 +326,10 @@
 				64E9ED1F2C7DAB5E00B7C473 /* DocView.swift in Sources */,
 				64E9ED272C7DBC1400B7C473 /* Doc.swift in Sources */,
 				64E9ED1D2C7DA64800B7C473 /* SavedView.swift in Sources */,
+				647E71302C7F476B002C95CF /* Saved.swift in Sources */,
 				64E9ED192C7DA50D00B7C473 /* MainTabView.swift in Sources */,
 				64E9ED1B2C7DA58000B7C473 /* ExploreView.swift in Sources */,
-				64E9ED222C7DB9D400B7C473 /* ModalData.swift in Sources */,
+				64E9ED222C7DB9D400B7C473 /* ModelData.swift in Sources */,
 				64E9ECEF2C7DA39700B7C473 /* swifterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

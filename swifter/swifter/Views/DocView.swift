@@ -5,12 +5,35 @@
 //  Created by S on 2024/8/27.
 //
 
+import SwiftData
 import SwiftUI
 
 struct DocView: View {
     @Environment(ModelData.self) var modelData: ModelData
+    @Environment(\.modelContext) private var context
+
     @State private var selectedDoc: Doc?
     @State private var isWebViewLoading = false
+    @State private var currentURL: URL?
+
+    func updateSaved(
+        url: URL,
+        group: String = "Default",
+        name: String? = nil
+    ) {
+        
+        
+        let newSaved = Saved(
+            id: UUID().uuidString,
+            url: url,
+            group: group,
+            name: name,
+            date: .now
+        )
+
+        context.insert(newSaved)
+        print(context)
+    }
 
     var body: some View {
         @Bindable var modelData = modelData
@@ -41,7 +64,8 @@ struct DocView: View {
                     ZStack {
                         WebView(
                             url: URL(string: doc.urlString) ?? URL(string: "https://www.apple.com")!,
-                            isWebViewLoading: $isWebViewLoading
+                            isWebViewLoading: $isWebViewLoading,
+                            currentURL: $currentURL
                         )
 
                         if isWebViewLoading {
@@ -63,6 +87,17 @@ struct DocView: View {
                             modelData.isDocWebViewOpened.toggle()
                         } label: {
                             Image(systemName: "arrow.uturn.backward")
+                        }
+
+                        Button {
+                            guard let url = currentURL else {
+                                print("Invalid URL")
+                                return
+                            }
+                            updateSaved(url: url)
+                            print("Saving URL: \(url)")
+                        } label: {
+                            Image(systemName: "bookmark")
                         }
                         Spacer()
                     }
