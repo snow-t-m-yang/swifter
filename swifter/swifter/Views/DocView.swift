@@ -16,6 +16,9 @@ struct DocView: View {
     @State private var isWebViewLoading = false
     @State private var currentURL: URL?
 
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+
     @Query(sort: \Saved.date, order: .reverse) private var SavedItems: [Saved]
 
     func updateSaved(
@@ -26,19 +29,22 @@ struct DocView: View {
         if let existSaved = SavedItems.first(where: { $0.url == url }) {
             context.delete(existSaved)
             print("\(existSaved)")
-            return
+            alertMessage = "Removed from Saved!"
+        } else {
+            let newSaved = Saved(
+                id: UUID().uuidString,
+                url: url,
+                group: group,
+                name: name,
+                date: .now
+            )
+
+            context.insert(newSaved)
+            alertMessage = "Added to Saved!"
+            print(context)
         }
 
-        let newSaved = Saved(
-            id: UUID().uuidString,
-            url: url,
-            group: group,
-            name: name,
-            date: .now
-        )
-
-        context.insert(newSaved)
-        print(context)
+        showAlert = true
     }
 
     var body: some View {
@@ -112,6 +118,16 @@ struct DocView: View {
                     }
                 }
             }
+        }
+        .alert(
+            "Notification",
+            isPresented: $showAlert
+        ) {
+            Button("OK") {
+                // Handle the acknowledgement.
+            }
+        } message: {
+            Text(alertMessage)
         }
     }
 
