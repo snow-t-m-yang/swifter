@@ -31,6 +31,11 @@ struct SavedView: View {
                         }
                     }
                 }
+                .onDelete(perform: { indexSet in
+                    for index in indexSet {
+                        context.delete(SavedItems[index])
+                    }
+                })
             }
         }
         .overlay {

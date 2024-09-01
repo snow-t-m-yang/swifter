@@ -16,13 +16,19 @@ struct DocView: View {
     @State private var isWebViewLoading = false
     @State private var currentURL: URL?
 
+    @Query(sort: \Saved.date, order: .reverse) private var SavedItems: [Saved]
+
     func updateSaved(
         url: URL,
         group: String = "Default",
         name: String? = nil
     ) {
-        
-        
+        if let existSaved = SavedItems.first(where: { $0.url == url }) {
+            context.delete(existSaved)
+            print("\(existSaved)")
+            return
+        }
+
         let newSaved = Saved(
             id: UUID().uuidString,
             url: url,
@@ -97,13 +103,21 @@ struct DocView: View {
                             updateSaved(url: url)
                             print("Saving URL: \(url)")
                         } label: {
-                            Image(systemName: "bookmark")
+                            if isURLSaved(url: currentURL) {
+                                Image(systemName: "bookmark.fill")
+                            } else {
+                                Image(systemName: "bookmark")
+                            }
                         }
-                        Spacer()
                     }
                 }
             }
         }
+    }
+
+    private func isURLSaved(url: URL?) -> Bool {
+        guard let url = url else { return false }
+        return SavedItems.contains { $0.url == url }
     }
 }
 

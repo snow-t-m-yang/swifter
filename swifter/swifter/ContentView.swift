@@ -16,5 +16,8 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environment(ModelData())
-        .modelContainer(for: Saved.self, inMemory: true)
+        .modelContainer(
+            for: Saved.self,
+            isAutosaveEnabled: true
+        )
 }
