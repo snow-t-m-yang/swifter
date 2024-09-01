@@ -16,7 +16,7 @@ struct DocView: View {
     @State private var isWebViewLoading = false
     @State private var currentURL: URL?
 
-    @State private var showAlert = false
+    @State private var isAlertShown = false
     @State private var alertMessage = ""
 
     @Query(sort: \Saved.date, order: .reverse) private var SavedItems: [Saved]
@@ -41,10 +41,14 @@ struct DocView: View {
 
             context.insert(newSaved)
             alertMessage = "Added to Saved!"
-            print(context)
         }
 
-        showAlert = true
+        isAlertShown = true
+    }
+
+    private func isURLSaved(url: URL?) -> Bool {
+        guard let url = url else { return false }
+        return SavedItems.contains { $0.url == url }
     }
 
     var body: some View {
@@ -121,7 +125,7 @@ struct DocView: View {
         }
         .alert(
             "Notification",
-            isPresented: $showAlert
+            isPresented: $isAlertShown
         ) {
             Button("OK") {
                 // Handle the acknowledgement.
@@ -129,11 +133,6 @@ struct DocView: View {
         } message: {
             Text(alertMessage)
         }
-    }
-
-    private func isURLSaved(url: URL?) -> Bool {
-        guard let url = url else { return false }
-        return SavedItems.contains { $0.url == url }
     }
 }
 
