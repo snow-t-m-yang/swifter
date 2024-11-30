@@ -123,6 +123,7 @@ struct DocView: View {
                 }
             }
         }
+        .disabled(isWebViewLoading)
         .alert(
             "Notification",
             isPresented: $isAlertShown
