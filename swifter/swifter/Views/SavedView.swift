@@ -38,6 +38,9 @@ struct SavedView: View {
                 })
             }
         }
+        .onAppear {
+           dump(SavedItems)
+        }
         .overlay {
             if SavedItems.isEmpty {
                 ContentUnavailableView(label: {

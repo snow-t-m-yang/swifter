@@ -38,7 +38,6 @@ struct DocView: View {
                 name: name,
                 date: .now
             )
-
             context.insert(newSaved)
             alertMessage = "Added to Saved!"
         }
@@ -79,7 +78,8 @@ struct DocView: View {
                 if let doc = selectedDoc {
                     ZStack {
                         WebView(
-                            url: URL(string: doc.urlString) ?? URL(string: "https://www.apple.com")!,
+                            url: URL(string: doc.urlString) ?? URL(
+                                string: "https://www.apple.com")!,
                             isWebViewLoading: $isWebViewLoading,
                             currentURL: $currentURL
                         )
@@ -111,7 +111,6 @@ struct DocView: View {
                                 return
                             }
                             updateSaved(url: url)
-                            print("Saving URL: \(url)")
                         } label: {
                             if isURLSaved(url: currentURL) {
                                 Image(systemName: "bookmark.fill")
