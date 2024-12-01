@@ -12,6 +12,16 @@ struct WebView: UIViewRepresentable {
     let url: URL
     @Binding var isWebViewLoading: Bool
     @Binding var currentURL: URL?
+    
+    // We need to initialize it since there are optional arguments
+    init(url: URL,
+         isWebViewLoading: Binding<Bool> = .constant(false),
+         currentURL: Binding<URL?> = .constant(nil)) {
+        self.url = url
+        self._isWebViewLoading = isWebViewLoading
+        self._currentURL = currentURL
+    }
+
 
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
