@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Observable
-final class ModelData {
+final class DocViewModel {
     var docs: [Doc] = load("docData.json")
 
     var isDocWebViewOpened = false

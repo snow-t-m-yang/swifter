@@ -10,7 +10,7 @@ import SwiftUI
 
 @main
 struct swifterApp: App {
-    @State private var modelData = ModelData()
+    @State private var modelData = DocViewModel()
 
     var body: some Scene {
         WindowGroup {

@@ -9,7 +9,8 @@ import SwiftData
 import SwiftUI
 
 struct DocView: View {
-    @Environment(ModelData.self) var modelData: ModelData
+    // For hardcoded category
+    @Environment(DocViewModel.self) var docViewModel: DocViewModel
     @Environment(\.modelContext) private var context
 
     @State private var webViewManager = WebViewManager()
@@ -18,11 +19,9 @@ struct DocView: View {
     @Query(sort: \Saved.date, order: .reverse) private var SavedItems: [Saved]
 
     var body: some View {
-        @Bindable var modelData = modelData
-
         NavigationStack {
             List {
-                ForEach(modelData.docs) { doc in
+                ForEach(docViewModel.docs) { doc in
                     HStack {
                         Text(doc.name)
                             .font(.title)
@@ -30,7 +29,7 @@ struct DocView: View {
                             .padding(4)
                         Spacer()
                         Button(action: {
-                            modelData.isDocWebViewOpened.toggle()
+                            webViewManager.isShown.toggle()
                             selectedDoc = doc
                         }) {
                             Image(systemName: "chevron.right")
@@ -43,18 +42,18 @@ struct DocView: View {
             .navigationTitle("Doc")
             .listStyle(.insetGrouped)
             .navigationDestination(
-                isPresented: $modelData.isDocWebViewOpened
+                isPresented: $webViewManager.isShown
             ) {
                 if let doc = selectedDoc {
                     ZStack {
                         WebView(
                             url: URL(string: doc.urlString) ?? URL(
                                 string: "https://www.apple.com")!,
-                            isWebViewLoading: $webViewManager.isWebViewLoading,
+                            isWebViewLoading: $webViewManager.isLoading,
                             currentURL: $webViewManager.currentURL
                         )
 
-                        if webViewManager.isWebViewLoading {
+                        if webViewManager.isLoading {
                             ProgressView()
                                 .progressViewStyle(.circular)
                                 .tint(.accent)
@@ -66,11 +65,11 @@ struct DocView: View {
             }
         }
         .toolbar {
-            if modelData.isDocWebViewOpened {
+            if webViewManager.isShown {
                 ToolbarItem(placement: .bottomBar) {
                     HStack {
                         Button {
-                            modelData.isDocWebViewOpened.toggle()
+                            webViewManager.isShown.toggle()
                         } label: {
                             Image(systemName: "arrow.uturn.backward")
                         }
@@ -97,10 +96,10 @@ struct DocView: View {
                 }
             }
         }
-        .disabled(webViewManager.isWebViewLoading)
+        .disabled(webViewManager.isLoading)
         .alert(
             "Notification",
-            isPresented: $webViewManager.isAlertVisible
+            isPresented: $webViewManager.isAlertShown
         ) {
             Button("OK") {
                 // Handle the acknowledgement.
@@ -113,5 +112,5 @@ struct DocView: View {
 
 #Preview {
     DocView()
-        .environment(ModelData())
+        .environment(DocViewModel())
 }

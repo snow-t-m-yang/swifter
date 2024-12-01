@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct SavedView: View {
-    @Environment(ModelData.self) var modelData: ModelData
+    @Environment(DocViewModel.self) var docViewModel: DocViewModel
     @Environment(\.modelContext) private var context
 
     @Query(sort: \Saved.date, order: .reverse) private var SavedItems: [Saved]
@@ -46,5 +46,5 @@ struct SavedView: View {
 
 #Preview {
     SavedView()
-        .environment(ModelData())
+        .environment(DocViewModel())
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @Environment(ModelData.self) var modelData
+    @Environment(DocViewModel.self) var docViewModel
 
     var body: some View {
         TabView {
@@ -31,5 +31,5 @@ struct MainTabView: View {
 
 #Preview {
     MainTabView()
-        .environment(ModelData())
+        .environment(DocViewModel())
 }

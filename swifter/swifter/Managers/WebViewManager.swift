@@ -10,8 +10,9 @@ import SwiftData
 import SwiftUI
 
 @Observable final class WebViewManager {
-    var isWebViewLoading: Bool = false
-    var isAlertVisible: Bool = false
+    var isLoading: Bool = false
+    var isAlertShown: Bool = false
+    var isShown: Bool = false
 
     var alertMessage: String = ""
     var currentURL: URL?
@@ -44,7 +45,8 @@ import SwiftUI
             print("Added item: \(newSavedItem)")
             alertMessage = "Added to Saved!"
         }
-        isAlertVisible = true
+
+        isAlertShown = true
     }
 
 }
