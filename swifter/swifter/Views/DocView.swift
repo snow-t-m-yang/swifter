@@ -12,43 +12,10 @@ struct DocView: View {
     @Environment(ModelData.self) var modelData: ModelData
     @Environment(\.modelContext) private var context
 
+    @State private var webViewManager = WebViewManager()
     @State private var selectedDoc: Doc?
-    @State private var isWebViewLoading = false
-    @State private var currentURL: URL?
-
-    @State private var isAlertShown = false
-    @State private var alertMessage = ""
 
     @Query(sort: \Saved.date, order: .reverse) private var SavedItems: [Saved]
-
-    func updateSaved(
-        url: URL,
-        group: String = "Default",
-        name: String? = nil
-    ) {
-        if let existSaved = SavedItems.first(where: { $0.url == url }) {
-            context.delete(existSaved)
-            print("\(existSaved)")
-            alertMessage = "Removed from Saved!"
-        } else {
-            let newSaved = Saved(
-                id: UUID().uuidString,
-                url: url,
-                group: group,
-                name: name,
-                date: .now
-            )
-            context.insert(newSaved)
-            alertMessage = "Added to Saved!"
-        }
-
-        isAlertShown = true
-    }
-
-    private func isURLSaved(url: URL?) -> Bool {
-        guard let url = url else { return false }
-        return SavedItems.contains { $0.url == url }
-    }
 
     var body: some View {
         @Bindable var modelData = modelData
@@ -83,14 +50,14 @@ struct DocView: View {
                         WebView(
                             url: URL(string: doc.urlString) ?? URL(
                                 string: "https://www.apple.com")!,
-                            isWebViewLoading: $isWebViewLoading,
-                            currentURL: $currentURL
+                            isWebViewLoading: $webViewManager.isWebViewLoading,
+                            currentURL: $webViewManager.currentURL
                         )
 
-                        if isWebViewLoading {
+                        if webViewManager.isWebViewLoading {
                             ProgressView()
                                 .progressViewStyle(.circular)
-                                .tint(.accentColor)
+                                .tint(.accent)
                                 .scaleEffect(1.5)
                         }
                     }
@@ -109,13 +76,18 @@ struct DocView: View {
                         }
 
                         Button {
-                            guard let url = currentURL else {
+                            guard let url = webViewManager.currentURL else {
                                 print("Invalid URL")
                                 return
                             }
-                            updateSaved(url: url)
+                            webViewManager.updateSavedItems(
+                                url: url, savedItems: SavedItems,
+                                context: context)
                         } label: {
-                            if isURLSaved(url: currentURL) {
+                            if webViewManager.isURLSaved(
+                                url: webViewManager.currentURL,
+                                savedItems: SavedItems
+                            ) {
                                 Image(systemName: "bookmark.fill")
                             } else {
                                 Image(systemName: "bookmark")
@@ -125,16 +97,16 @@ struct DocView: View {
                 }
             }
         }
-        .disabled(isWebViewLoading)
+        .disabled(webViewManager.isWebViewLoading)
         .alert(
             "Notification",
-            isPresented: $isAlertShown
+            isPresented: $webViewManager.isAlertVisible
         ) {
             Button("OK") {
                 // Handle the acknowledgement.
             }
         } message: {
-            Text(alertMessage)
+            Text(webViewManager.alertMessage)
         }
     }
 }

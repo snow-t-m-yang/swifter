@@ -9,8 +9,8 @@ import SwiftUI
 
 /**
  TODO:
-    1. Add loading state
-    2. Tap to reading view
+    - ~~Add loading state~~
+    - Tap to reading view
  */
 
 struct PreviewCardView: View {

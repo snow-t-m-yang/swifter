@@ -26,6 +26,7 @@
 		64E9ED2B2C7DE6A700B7C473 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED2A2C7DE6A700B7C473 /* WebView.swift */; };
 		804F5E192CFAF6180072AE5D /* PreviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804F5E182CFAF6180072AE5D /* PreviewCardView.swift */; };
 		804F5E1B2CFB2E450072AE5D /* PreviewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804F5E1A2CFB2E450072AE5D /* PreviewCardViewModel.swift */; };
+		805E07C62CFC538D00222DA7 /* WebViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E07C52CFC538D00222DA7 /* WebViewManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		64E9ED2A2C7DE6A700B7C473 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		804F5E182CFAF6180072AE5D /* PreviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardView.swift; sourceTree = "<group>"; };
 		804F5E1A2CFB2E450072AE5D /* PreviewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardViewModel.swift; sourceTree = "<group>"; };
+		805E07C52CFC538D00222DA7 /* WebViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 		64E9ECED2C7DA39700B7C473 /* swifter */ = {
 			isa = PBXGroup;
 			children = (
+				805E07C42CFC536400222DA7 /* Managers */,
 				647E712E2C7F3E30002C95CF /* UIViews */,
 				647E712D2C7F3DEF002C95CF /* Views */,
 				64E9ED252C7DBBF900B7C473 /* Modals */,
@@ -193,6 +196,14 @@
 				647E712F2C7F476B002C95CF /* Saved.swift */,
 			);
 			path = Modals;
+			sourceTree = "<group>";
+		};
+		805E07C42CFC536400222DA7 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				805E07C52CFC538D00222DA7 /* WebViewManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,6 +344,7 @@
 				64E9ED1F2C7DAB5E00B7C473 /* DocView.swift in Sources */,
 				64E9ED272C7DBC1400B7C473 /* Doc.swift in Sources */,
 				64E9ED1D2C7DA64800B7C473 /* SavedView.swift in Sources */,
+				805E07C62CFC538D00222DA7 /* WebViewManager.swift in Sources */,
 				647E71302C7F476B002C95CF /* Saved.swift in Sources */,
 				64E9ED192C7DA50D00B7C473 /* MainTabView.swift in Sources */,
 				64E9ED1B2C7DA58000B7C473 /* ExploreView.swift in Sources */,
