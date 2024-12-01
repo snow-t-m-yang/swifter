@@ -24,7 +24,7 @@
 		64E9ED272C7DBC1400B7C473 /* Doc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED262C7DBC1400B7C473 /* Doc.swift */; };
 		64E9ED292C7DCE2F00B7C473 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED282C7DCE2F00B7C473 /* SafariView.swift */; };
 		64E9ED2B2C7DE6A700B7C473 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E9ED2A2C7DE6A700B7C473 /* WebView.swift */; };
-		804F5E192CFAF6180072AE5D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804F5E182CFAF6180072AE5D /* CardView.swift */; };
+		804F5E192CFAF6180072AE5D /* PreviewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804F5E182CFAF6180072AE5D /* PreviewCardView.swift */; };
 		804F5E1B2CFB2E450072AE5D /* PreviewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804F5E1A2CFB2E450072AE5D /* PreviewCardViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,7 @@
 		64E9ED262C7DBC1400B7C473 /* Doc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doc.swift; sourceTree = "<group>"; };
 		64E9ED282C7DCE2F00B7C473 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		64E9ED2A2C7DE6A700B7C473 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		804F5E182CFAF6180072AE5D /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		804F5E182CFAF6180072AE5D /* PreviewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardView.swift; sourceTree = "<group>"; };
 		804F5E1A2CFB2E450072AE5D /* PreviewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,7 +102,7 @@
 				64E9ED1A2C7DA58000B7C473 /* ExploreView.swift */,
 				64E9ED1C2C7DA64800B7C473 /* SavedView.swift */,
 				64E9ED182C7DA50D00B7C473 /* MainTabView.swift */,
-				804F5E182CFAF6180072AE5D /* CardView.swift */,
+				804F5E182CFAF6180072AE5D /* PreviewCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -337,7 +337,7 @@
 				64E9ED192C7DA50D00B7C473 /* MainTabView.swift in Sources */,
 				64E9ED1B2C7DA58000B7C473 /* ExploreView.swift in Sources */,
 				64E9ED222C7DB9D400B7C473 /* ModelData.swift in Sources */,
-				804F5E192CFAF6180072AE5D /* CardView.swift in Sources */,
+				804F5E192CFAF6180072AE5D /* PreviewCardView.swift in Sources */,
 				64E9ECEF2C7DA39700B7C473 /* swifterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

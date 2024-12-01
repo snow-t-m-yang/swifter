@@ -32,7 +32,7 @@ final class Saved {
     
     static func fakeItems() -> [Saved] {
         return [
-            Saved(id: UUID().uuidString, url: URL(string: "https://apple.com")!, group: "Technology", name: "Apple", date: .now),
+            Saved(id: UUID().uuidString, url: URL(string: "https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions")!, group: "Technology", name: "Apple", date: .now),
             Saved(id: UUID().uuidString, url: URL(string: "https://swift.org")!, group: "Programming", name: "Swift", date: .now.addingTimeInterval(-3600)),
             Saved(id: UUID().uuidString, url: URL(string: "https://developer.apple.com")!, group: "Development", name: "Apple Developer", date: .now.addingTimeInterval(-7200))
         ]

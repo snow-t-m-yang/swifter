@@ -52,6 +52,7 @@ struct DocView: View {
 
     var body: some View {
         @Bindable var modelData = modelData
+
         NavigationStack {
             List {
                 ForEach(modelData.docs) { doc in
@@ -74,7 +75,9 @@ struct DocView: View {
             }
             .navigationTitle("Doc")
             .listStyle(.insetGrouped)
-            .navigationDestination(isPresented: $modelData.isDocWebViewOpened) {
+            .navigationDestination(
+                isPresented: $modelData.isDocWebViewOpened
+            ) {
                 if let doc = selectedDoc {
                     ZStack {
                         WebView(

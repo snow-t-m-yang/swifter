@@ -11,8 +11,7 @@ import LinkPresentation
 import SwiftUI
 import UniformTypeIdentifiers
 
-@Observable
-final class PreviewCardViewModel {
+@Observable final class PreviewCardViewModel {
     var image: UIImage?
     var title: String?
     var url: String?
@@ -66,13 +65,17 @@ final class PreviewCardViewModel {
         let provider = LPMetadataProvider()
 
         Task {
-            let metadata = try await provider.startFetchingMetadata(
-                for: previewURL)
-
-            image = try await convertToImage(metadata.imageProvider)
-            title = metadata.title
-
-            url = metadata.url?.host()
+            do {
+                let metadata = try await provider.startFetchingMetadata(
+                    for: previewURL)
+                image = try await convertToImage(metadata.imageProvider)
+                title = metadata.title
+                
+                url = metadata.url?.lastPathComponent
+                
+            } catch {
+                    print("Failed to fetch metadata \(error)")
+            }
         }
     }
 }
