@@ -7,48 +7,63 @@
 
 import SwiftUI
 
+/**
+ TODO:
+    1. Add loading state
+    2. Tap to reading view
+ */
+
 struct PreviewCardView: View {
     let previewCardModel: PreviewCardViewModel
 
     var body: some View {
-        GroupBox {
-            VStack(spacing: 20) {
-                let hasImage = previewCardModel.image != nil
+        ZStack {
+            GroupBox {
+                VStack(spacing: 20) {
+                    let hasImage = previewCardModel.image != nil
 
-                Image(
-                    uiImage: previewCardModel.image ?? UIImage(
-                        systemName: "book")!
-                )
-                .resizable()
-                .aspectRatio(
-                    contentMode: .fit
-                )
-                .frame(
-                    maxWidth: hasImage ? .infinity : 107,
-                    maxHeight: 107
-                )
-                .clipped(antialiased: true)
-                .cornerRadius(7)
-                .colorInvert()
+                    Image(
+                        uiImage: previewCardModel.image ?? UIImage(
+                            systemName: "book")!
+                    )
+                    .resizable()
+                    .aspectRatio(
+                        contentMode: .fit
+                    )
+                    .frame(
+                        maxWidth: hasImage ? .infinity : 107,
+                        maxHeight: 107
+                    )
+                    .clipped(antialiased: true)
+                    .cornerRadius(7)
+                    .colorInvert()
 
-                if let url = previewCardModel.url {
-                    Text(url)
-                        .font(.headline)
-                        .foregroundColor(.accent)
+                    if let url = previewCardModel.url {
+                        Text(url)
+                            .font(.headline)
+                            .foregroundColor(.accent)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(1)
+                    }
+
+                }
+
+            } label: {
+                if let title = previewCardModel.title {
+                    Text(title)
+                        .font(.body)
                         .multilineTextAlignment(.leading)
                         .lineLimit(1)
                 }
 
             }
 
-        } label: {
-            if let title = previewCardModel.title {
-                Text(title)
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(1)
+            if previewCardModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .tint(.accentColor)
+                    .scaleEffect(5)
             }
-
         }
 
     }

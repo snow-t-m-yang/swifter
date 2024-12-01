@@ -18,6 +18,8 @@ import UniformTypeIdentifiers
 
     let previewURL: URL?
 
+    var isLoading: Bool = false
+
     init(_ url: String) {
         self.previewURL = URL(string: url)
 
@@ -53,7 +55,6 @@ import UniformTypeIdentifiers
 
                     image = UIImage(data: data)
                 }
-
             }
         }
 
@@ -64,18 +65,22 @@ import UniformTypeIdentifiers
         guard let previewURL else { return }
         let provider = LPMetadataProvider()
 
+        isLoading = true
+
         Task {
             do {
                 let metadata = try await provider.startFetchingMetadata(
                     for: previewURL)
                 image = try await convertToImage(metadata.imageProvider)
                 title = metadata.title
-                
+
                 url = metadata.url?.lastPathComponent
-                
+
             } catch {
-                    print("Failed to fetch metadata \(error)")
+                print("Failed to fetch metadata \(error)")
             }
+            isLoading = false
         }
+
     }
 }
