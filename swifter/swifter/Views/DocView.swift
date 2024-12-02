@@ -30,7 +30,8 @@ struct DocView: View {
                         Spacer()
                         Button(action: {
                             webViewManager.isShown.toggle()
-                            selectedDoc = doc
+                            webViewManager.currentURL = URL(
+                                string: doc.urlString)
                         }) {
                             Image(systemName: "chevron.right")
                                 .foregroundColor(.accentColor)
@@ -44,56 +45,8 @@ struct DocView: View {
             .navigationDestination(
                 isPresented: $webViewManager.isShown
             ) {
-                if let doc = selectedDoc {
-                    ZStack {
-                        WebView(
-                            url: URL(string: doc.urlString) ?? URL(
-                                string: "https://www.apple.com")!,
-                            isWebViewLoading: $webViewManager.isLoading,
-                            currentURL: $webViewManager.currentURL
-                        )
-
-                        if webViewManager.isLoading {
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                                .tint(.accent)
-                                .scaleEffect(1.5)
-                        }
-                    }
-                    .navigationBarBackButtonHidden(true)
-                }
-            }
-        }
-        .toolbar {
-            if webViewManager.isShown {
-                ToolbarItem(placement: .bottomBar) {
-                    HStack {
-                        Button {
-                            webViewManager.isShown.toggle()
-                        } label: {
-                            Image(systemName: "arrow.uturn.backward")
-                        }
-
-                        Button {
-                            guard let url = webViewManager.currentURL else {
-                                print("Invalid URL")
-                                return
-                            }
-                            webViewManager.updateSavedItems(
-                                url: url, savedItems: SavedItems,
-                                context: context)
-                        } label: {
-                            if webViewManager.isURLSaved(
-                                url: webViewManager.currentURL,
-                                savedItems: SavedItems
-                            ) {
-                                Image(systemName: "bookmark.fill")
-                            } else {
-                                Image(systemName: "bookmark")
-                            }
-                        }
-                    }
-                }
+                WebViewContainer(
+                    manager: webViewManager, SavedItems: SavedItems)
             }
         }
         .disabled(webViewManager.isLoading)

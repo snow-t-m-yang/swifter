@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftData
-import SwiftUI
 
 @Observable final class WebViewManager {
     var isLoading: Bool = false
