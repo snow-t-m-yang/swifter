@@ -28,6 +28,7 @@
 		804F5E1B2CFB2E450072AE5D /* PreviewCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804F5E1A2CFB2E450072AE5D /* PreviewCardViewModel.swift */; };
 		805E07C62CFC538D00222DA7 /* WebViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E07C52CFC538D00222DA7 /* WebViewManager.swift */; };
 		805E07C92CFD5C8700222DA7 /* WebViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 805E07C82CFD5C8700222DA7 /* WebViewContainer.swift */; };
+		80B42BA92CFD7B4B00354514 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 80B42BA82CFD7B4100354514 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		804F5E1A2CFB2E450072AE5D /* PreviewCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCardViewModel.swift; sourceTree = "<group>"; };
 		805E07C52CFC538D00222DA7 /* WebViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewManager.swift; sourceTree = "<group>"; };
 		805E07C82CFD5C8700222DA7 /* WebViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewContainer.swift; sourceTree = "<group>"; };
+		80B42BA82CFD7B4100354514 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 		64E9ECED2C7DA39700B7C473 /* swifter */ = {
 			isa = PBXGroup;
 			children = (
+				80B42BA82CFD7B4100354514 /* README.md */,
 				805E07C72CFD5C5C00222DA7 /* Containers */,
 				805E07C42CFC536400222DA7 /* Managers */,
 				647E712E2C7F3E30002C95CF /* UIViews */,
@@ -323,6 +326,7 @@
 			files = (
 				64E9ECF62C7DA39800B7C473 /* Preview Assets.xcassets in Resources */,
 				64E9ECF32C7DA39800B7C473 /* Assets.xcassets in Resources */,
+				80B42BA92CFD7B4B00354514 /* README.md in Resources */,
 				64E9ED242C7DBB2F00B7C473 /* docData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

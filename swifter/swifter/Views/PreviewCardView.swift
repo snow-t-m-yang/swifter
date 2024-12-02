@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-/**
- TODO:
-    - ~~Add loading state~~
-    - Tap to reading view
- */
-
 struct PreviewCardView: View {
     let previewCardModel: PreviewCardViewModel
 
